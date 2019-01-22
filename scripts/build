@@ -1,0 +1,1 @@
+cross-env NODE_PATH=src:custom:src/service:src/components/pages:src/components:src/components/common:components/service:src/utils: react-scripts build;

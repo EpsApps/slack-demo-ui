@@ -1,0 +1,16 @@
+.Map-Container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Map-Controls {
+    display: flex;
+    justify-content: center;
+}
+
+.Map-LeafletMap {
+    height: 700px;
+    width: 800px;
+    overflow: hidden;
+}
