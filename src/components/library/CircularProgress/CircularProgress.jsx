@@ -23,7 +23,6 @@ class CircularProgress extends Component {
                             top: '50%',
                             transform: 'translate(-50%, -50%)'
                         }}
-                        //color='#5496d3'
                         size={60}
                         thickness={7} />
                 </div>

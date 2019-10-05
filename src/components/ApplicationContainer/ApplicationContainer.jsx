@@ -14,8 +14,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import MapIcon from '@material-ui/icons/Map';
-import Map from 'dashboards/Map';
+import PeopleIcon from '@material-ui/icons/People';
+import SlackUsers from 'dashboards/SlackUsers';
 import './ApplicationContainer.css';
 
 const drawerWidth = 240;
@@ -49,6 +49,7 @@ const styles = theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
+        overflow: 'hidden'
     },
 });
 
@@ -76,9 +77,9 @@ class ApplicationContainer extends Component {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    <ListItem onClick={() => {}} button key='listItemMap'>
-                        <ListItemIcon><MapIcon /></ListItemIcon>
-                        <ListItemText primary='Map' />
+                    <ListItem onClick={() => {}} button key='listItemSlackUsers'>
+                        <ListItemIcon><PeopleIcon /></ListItemIcon>
+                        <ListItemText primary='Slack Users' />
                     </ListItem>
                 </List>
             </div>
@@ -97,12 +98,11 @@ class ApplicationContainer extends Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant='h6' color='inherit' noWrap>
-                            Demo
+                            WorkOS Demo
                         </Typography>
                     </Toolbar>
                 </AppBar>
                 <nav className={classes.drawer}>
-                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                     <Hidden smUp implementation='css'>
                         <Drawer
                             container={this.props.container}
@@ -126,7 +126,7 @@ class ApplicationContainer extends Component {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <div>
-                        <Map />
+                        <SlackUsers />
                     </div>
                 </main>
             </div>

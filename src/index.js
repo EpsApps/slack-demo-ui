@@ -28,9 +28,7 @@ const mapStateToProps = state => ({
 let ConnectedAppContainer = connect(mapStateToProps, {})(appContainer);
 
 ReactDOM.render(
-    <Provider store={configureStore()}>
-                <ConnectedAppContainer />
-    </Provider>,
+    <Provider store={configureStore()}><ConnectedAppContainer /></Provider>,
     document.getElementById('root')
 );
 serviceWorker.unregister();

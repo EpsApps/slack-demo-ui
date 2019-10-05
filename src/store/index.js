@@ -1,11 +1,7 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reactBlockUIMiddleware from 'react-block-ui/reduxMiddleware';
-import map from 'dashboards/Map/Map.redux';
-
-let rootReducer = combineReducers({
-    map
-});
+import rootReducer from './rootReducer';
 
 export default function configureStore() {
     return createStore(

@@ -29,7 +29,7 @@ export default class API {
     }
 
     static getBaseURL = () => {
-        return 'https://alpha.skylo.io/api';
+        return 'http://ec2-54-183-41-146.us-west-1.compute.amazonaws.com:8081';
     }
 
 }

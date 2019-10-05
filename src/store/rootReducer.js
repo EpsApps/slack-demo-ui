@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import map from 'dashboards/Map/Map.redux';
+import slackUsers from './slackUsers';
 
 export default combineReducers({
-    map
+    slackUsers
 });
