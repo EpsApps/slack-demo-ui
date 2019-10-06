@@ -9,6 +9,7 @@ const columnHeaders = [
     {
         field: 'profile.image_32',
         label: '',
+        mobileLabel: 'Image',
         type: 'image'
     },
     {

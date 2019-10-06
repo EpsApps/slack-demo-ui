@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import PeopleIcon from '@material-ui/icons/People';
 import SlackUsers from 'dashboards/SlackUsers';
+import { isMobile } from 'Browser';
 import './ApplicationContainer.css';
 
 const drawerWidth = 240;
@@ -48,7 +49,7 @@ const styles = theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 3,
+        padding: (isMobile()) ? '0px' : theme.spacing.unit * 3,
         overflow: 'hidden'
     },
 });

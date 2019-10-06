@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { isMobile } from 'Browser';
 import './Table.css';
 
 const styles = theme => ({
@@ -31,6 +32,7 @@ class Table extends Component {
     }
 
     renderTableHead = () => {
+        if (isMobile()) return;
         let cells = this.props.columnHeaders.map((columnHeader, index) => {
             return (
                 <TableCell key={`column-header-${index}`}>{columnHeader.label}</TableCell>
@@ -45,28 +47,33 @@ class Table extends Component {
         )
     }
 
-    renderTableBody = () => {
+    getRowValue = (columnHeader, row) => {
+        let field = columnHeader.field;
+        let value;
+        /** 
+         * @todo make this recursive to account for deeply nested objects 
+         * this part could be abstracted a bit more
+         */
+        if (field.includes('.')) {
+            let fields = field.split('.');
+            let parentValue = row[fields[0]];
+            value = parentValue[fields[1]];
+        } else {
+            value = row[field];
+        }
+        if (columnHeader.type == 'image') {
+            value = (
+                <img src={value}/>
+            );
+        }
+        if (!value) value = '--';
+        return value;
+    }
+
+    renderRows = () => {
         let rows = this.props.rows.map((row, rowIndex) => {
             let cells = this.props.columnHeaders.map((columnHeader, cellIndex) => {
-                let field = columnHeader.field;
-                let value;
-                /** 
-                 * @todo make this recursive to account for deeply nested objects 
-                 * this part could be abstracted a bit more
-                 */
-                if (field.includes('.')) {
-                    let fields = field.split('.');
-                    let parentValue = row[fields[0]];
-                    value = parentValue[fields[1]];
-                } else {
-                    value = row[field];
-                }
-                if (columnHeader.type == 'image') {
-                    value = (
-                        <img src={value}/>
-                    );
-                }
-                if (!value) value = '--';
+                let value = this.getRowValue(columnHeader, row);
                 return (
                     <TableCell key={`table-cell-${cellIndex}`}>{value}</TableCell>
                 )
@@ -76,7 +83,34 @@ class Table extends Component {
                     {cells}
                 </TableRow>
             )
-        })
+        });
+        return rows;
+    }
+
+    renderMobileRows = () => {
+        let rows = this.props.rows.map((row, rowIndex) => {
+            let cells = this.props.columnHeaders.map((columnHeader, cellIndex) => {
+                let value = this.getRowValue(columnHeader, row);
+                let label = columnHeader.mobileLabel || columnHeader.label;
+                return (
+                    <div className='Table-MobileCell'>
+                        <div className='Table-MobileCellLabel'>{label}</div>
+                        <div className='Table-MobileCellValue'>{value}</div>
+                    </div>
+                )
+            });
+            return (
+                <div className='Table-MobileRow' key={`table-row-${rowIndex}`}>
+                    {cells}
+                    <div className='Table-MobileRowDivider'/>
+                </div>
+            )
+        });
+        return rows;
+    }
+
+    renderTableBody = () => {
+        let rows = (isMobile()) ? this.renderMobileRows() : this.renderRows();
         return (
             <TableBody>
                 {rows}
