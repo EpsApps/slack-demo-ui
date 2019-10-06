@@ -90,11 +90,18 @@ class Table extends Component {
     renderMobileRows = () => {
         let rows = this.props.rows.map((row, rowIndex) => {
             let cells = this.props.columnHeaders.map((columnHeader, cellIndex) => {
+                let className = 'Table-MobileCell';
+                if (cellIndex === 0 && columnHeader.type === 'image') {
+                    className += ' Table-MobileCell_type_prominent';
+                };
                 let value = this.getRowValue(columnHeader, row);
-                let label = columnHeader.mobileLabel || columnHeader.label;
+                let label;
+                if (columnHeader.label) label = (
+                    <div className='Table-MobileCellLabel'>{columnHeader.label}</div>
+                );
                 return (
-                    <div className='Table-MobileCell'>
-                        <div className='Table-MobileCellLabel'>{label}</div>
+                    <div className={className}>
+                        {label}
                         <div className='Table-MobileCellValue'>{value}</div>
                     </div>
                 )
@@ -110,7 +117,7 @@ class Table extends Component {
     }
 
     renderTableBody = () => {
-        let rows = (isMobile()) ? this.renderMobileRows() : this.renderRows();
+        let rows = (isMobile()) ? this.renderMobileRows() : this.renderMobileRows();
         return (
             <TableBody>
                 {rows}
