@@ -117,7 +117,7 @@ class Table extends Component {
     }
 
     renderTableBody = () => {
-        let rows = (isMobile()) ? this.renderMobileRows() : this.renderMobileRows();
+        let rows = (isMobile()) ? this.renderMobileRows() : this.renderRows();
         return (
             <TableBody>
                 {rows}
