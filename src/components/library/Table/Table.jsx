@@ -61,10 +61,25 @@ class Table extends Component {
         } else {
             value = row[field];
         }
-        if (columnHeader.type == 'image') {
-            value = (
-                <img src={value}/>
-            );
+        switch (columnHeader.type) {
+            case 'image':
+                value = (
+                    <img src={value} />
+                );
+                break;
+            case 'array':
+                /**
+                 * @todo do a better job naming here
+                 */
+                if (value) {
+                    let newValue = '';
+                    value.forEach((element, index) => {
+                        if (index > 0) newValue += ', ';
+                        newValue += element.name;
+                    });
+                    value = newValue;
+                };
+                break;
         }
         if (!value) value = '--';
         return value;

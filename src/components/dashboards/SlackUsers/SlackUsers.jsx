@@ -27,6 +27,11 @@ const columnHeaders = [
     {
         field: 'tz',
         label: 'Timezone'
+    },
+    {
+        field: 'channels',
+        label: 'Channels',
+        type: 'array'
     }
 ]
 
