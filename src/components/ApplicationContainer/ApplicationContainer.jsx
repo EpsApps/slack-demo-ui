@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import PeopleIcon from '@material-ui/icons/People';
 import SlackUsers from 'dashboards/SlackUsers';
-import { isMobile } from 'Browser';
+import { isMobile } from 'utilities/Browser';
 import './ApplicationContainer.css';
 
 const drawerWidth = 240;
