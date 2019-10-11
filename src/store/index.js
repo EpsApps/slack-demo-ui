@@ -1,7 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import reactBlockUIMiddleware from 'react-block-ui/reduxMiddleware';
-import rootReducer from './rootReducer';
+import slackUsers from './slackUsers';
+
+const rootReducer = combineReducers({
+    slackUsers
+});
 
 export default function configureStore() {
     return createStore(

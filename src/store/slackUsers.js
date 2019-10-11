@@ -1,4 +1,4 @@
-import API from 'API';
+import API from './API';
 
 export const GETTING_USERS = 'GETTING_USERS';
 export const GOT_USERS = 'GOT_USERS';
